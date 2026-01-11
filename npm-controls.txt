@@ -1,0 +1,16 @@
+>npm run start: 
+    This runs command runs several processes on the code and launches a web server at localhost:xxxx where xxxx is some port number. 
+    It should also open that address in your default browser as well, if it did not you can type that address directly into a browser or click on the link in the terminal. You should use this server as you develop your project instead of something like Live/Five Server.
+    When you are done working you can stop the dev server by typing ctrl c in the same terminal window in which the process is running. That will terminate it.
+
+>npm run build: 
+    This will prepare the code to be deployed to production. One person in your team should be designated to run this as needed.
+
+>npm run lint: 
+    This will run Eslint against the code to look for style and syntax errors. You should do this each time you are ready to commit. Make sure to clean up any errors it finds before you commit!
+
+>npm run format: 
+    This will run Prettier on your code and format it all consistently. You should also do this as a step in your commit process.
+
+>npm run test: 
+    This will run the Jest testing framework on your code.
