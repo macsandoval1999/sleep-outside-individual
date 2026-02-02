@@ -333,6 +333,66 @@ input[type="number"] {
   margin-bottom: 1em;
 }
 
+/* Checkout button */
+.checkout-button-container {
+  margin-bottom: 1rem;
+}
+#checkout-btn {
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+#checkout-btn:hover {
+  background-color: var(--tertiary-color);
+}
+#checkout-btn a {
+  text-decoration: none;
+  color: white;
+}
+
+/* form styles */
+.required {
+  color: red;
+}
+.checkout-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+#checkout-form {
+  padding: 2rem 1rem;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px var(--light-grey);
+}
+fieldset {
+  border: none;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+legend {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+label {
+  display: block;
+  margin-bottom: 1rem;
+}
+input[type="text"] {
+  width: 100%;
+  display: block;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #0b1b35;
+}
+
 
 
 @media screen and (min-width: 500px) {
