@@ -2,21 +2,31 @@ import { loadHeaderFooter, getLocalStorage } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";    
 
 
-const checkoutProcess = new CheckoutProcess( // Create an instance of CheckoutProcess
-  "#order-summary",
-  getLocalStorage("cartItems") || []
-);
 
-checkoutProcess.init(); // Initialize the checkout process
+// Load header and footer
+loadHeaderFooter();
 
-const formElement = document.getElementById("checkout-form"); // Get the checkout form element
 
+
+//Create an instance of CheckoutProcess with the order summary element and cart items
+const checkoutProcess = new CheckoutProcess("#order-summary", getLocalStorage("cartItems") || []);
+// Initialize the checkout process
+checkoutProcess.init(); 
+
+
+
+// Get the checkout form element
+const formElement = document.getElementById("checkout-form"); 
 formElement.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Prevent the default form submission behavior
-  await checkoutProcess.checkout(); // Call the checkout method to submit the order
+    event.preventDefault(); // Prevent the default form submission behavior
+    const myForm = document.forms[0];
+    const chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if (chk_status)
+        await checkoutProcess.checkout();
 });
 
 
 
-loadHeaderFooter();
+
 

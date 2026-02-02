@@ -222,3 +222,60 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footerTemplate, footerElement,); // Render the footer template into the footer element
   countCartItems(); // Update the cart item count badge in the header
 }
+
+
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+/* Display an alert message at the top of the main content area
+ =============================
+Description:
+Display an alert message at the top of the main content area
+Parameters:
+  - message: The message to be displayed in the alert.
+  - scroll: Optional. A boolean indicating whether to scroll to the top of the window (default is true).
+  - duration: Optional. The duration in milliseconds for which the alert should be displayed (default is 3000ms).
+Returns/Purpose:
+  - void
+  - Creates an alert element with the specified message and prepends it to the main content area.
+  - If the scroll parameter is true, scrolls the window to the top to ensure the alert is visible.
+  - The alert can be dismissed by clicking on the "X" span within it.
+USED IN: CheckoutProcess class to display success or error messages during the checkout process.
+=============================*/
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span class="close-alert">X</span>`;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+  const main = document.querySelector("main");
+  main.prepend(alert);
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if (scroll) window.scrollTo(0, 0);
+
+  // left this here to show how you could remove the alert automatically after a certain amount of time.
+  // setTimeout(function () {
+  //   main.removeChild(alert);
+  // }, duration);
+}
+
+
+
+export function removeAllAlerts() {
+/* Remove all alert messages from the main content area
+ =============================
+Description:
+Remove all alert messages from the main content area
+Parameters:
+  - None
+Returns/Purpose:
+  - void
+  - Selects all elements with the class "alert" within the main content area and removes them from the DOM.
+USED IN: CheckoutProcess class to clear existing alerts before displaying new ones during the checkout process.
+=============================*/
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}

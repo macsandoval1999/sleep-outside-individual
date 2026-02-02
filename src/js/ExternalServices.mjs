@@ -16,7 +16,7 @@ const baseURL = import.meta.env.VITE_SERVER_URL || ""; // Base URL for the serve
 
 
 
-function convertToJson(res) {
+async function convertToJson(res) {
 // Utility function to convert fetch response to JSON
 // =============================
 // Description:
@@ -31,11 +31,11 @@ function convertToJson(res) {
 //   - A promise that resolves to JSON data or rejects with an error.
 // USED IN: ProductData class methods to handle fetch responses when retrieving product data.
 // =============================
-
+  const data = await res.json();
   if (res.ok) { // If the response is OK (status in the range 200-299)...
-    return res.json(); // Convert the response to JSON
+    return data; // Convert the response to JSON
   } else { // Otherwise...
-    throw new Error("Bad Response"); // Throw an error with the message "Bad Response"
+    throw {name: "servicesError", message: data }; // Throw a service error with the message "Bad Response"
   }
 }
 

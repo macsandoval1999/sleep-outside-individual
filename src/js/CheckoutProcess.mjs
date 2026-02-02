@@ -1,9 +1,9 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 
 
-const services = new ExternalServices();
+const services = new ExternalServices(); // Create an instance of ExternalServices to handle API interactions
 
 
 
@@ -182,12 +182,40 @@ export default class CheckoutProcess {
         order.orderTotal = this.orderTotal; // Add the order total amount
         order.tax = this.tax; // Add the tax amount
         order.shipping = this.shipping; // Add the shipping amount
-        order.items = packageItems(this.list); // Package the items for the order
+        order.items = packageItems(this.list); // Package the items for the order 
+        console.log("Submitting order:", order); // Log the order object for debugging
 
         try { // Attempt to submit the order to the server
+            if (order.items.length === 0) {
+                throw new Error("No items in the order.");
+            }
             const response = await services.checkout(order); // Submit the order using the ExternalServices class
-            console.log("Order submitted successfully:", response); // Log the successful submission response
+            const isSuccess = response?.Success ?? response?.success ?? response?.message === "Order Placed"; // means check if response.Success exists, if not check response.success, if not check if response.message equals "Order Placed"
+            if (!isSuccess) { // If the submission was not successful...
+                throw response; // ...throw an error with the response
+            } else { // If the submission was successful...
+                console.log("Order submitted successfully:", response); // Log the successful submission response
+                setLocalStorage("so-cart", []); // Clear the cart in local storage after successful submission
+                sessionStorage.setItem("orderSuccess", "Order Placed");
+                location.assign("/checkout/success.html"); // Redirect to the order confirmation page
+            }
         } catch (err) { // Log any errors that occur during submission
+            removeAllAlerts(); // Remove any existing alerts
+            const message = err?.message;
+            if (Array.isArray(message)) {
+                message.forEach(msg => alertMessage(msg));
+            } else if (message && typeof message === "object") {
+                const messages = Object.values(message);
+                if (messages.length) {
+                    messages.forEach(msg => alertMessage(String(msg)));
+                } else {
+                    alertMessage("An unexpected error occurred.");
+                }
+            } else if (message) {
+                alertMessage(String(message));
+            } else {
+                alertMessage("An unexpected error occurred.");
+            }
             console.log(err); // Log any errors that occur during submission
         }
     }

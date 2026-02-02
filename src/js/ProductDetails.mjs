@@ -13,7 +13,7 @@ The only exported entity from this module is the ProductDetails class, which con
 
 
 
-import { countCartItems, getLocalStorage, setLocalStorage } from "./utils.mjs"; // Import utility functions for managing local storage and cart item count
+import { countCartItems, getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs"; // Import utility functions for managing local storage and cart item count
 
 
 
@@ -88,6 +88,7 @@ Methods:
         }
 
         setLocalStorage("so-cart", cartItems); // Update local storage with the new cart items array
+        alertMessage("Product added to cart!"); // Show an alert message indicating the product was added to the cart
         countCartItems(); // Update the cart item count badge in the header
     }
 

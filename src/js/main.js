@@ -2,6 +2,13 @@
 
 
 
-import { loadHeaderFooter } from "./utils.mjs"; // Import the loadHeaderFooter utility function
+import { loadHeaderFooter, alertMessage } from "./utils.mjs";
 
-loadHeaderFooter(); // Load the header and footer of the page
+loadHeaderFooter();
+
+// Show order success alert if redirected from checkout
+const orderSuccessMessage = sessionStorage.getItem("orderSuccess");
+if (orderSuccessMessage) {
+	alertMessage(orderSuccessMessage);
+	sessionStorage.removeItem("orderSuccess");
+}

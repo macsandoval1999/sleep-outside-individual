@@ -12,6 +12,8 @@
   --font-base: 18px;
   --small-font: 0.8em;
   --large-font: 1.2em;
+  --header-height: 80px;
+  --footer-height: 60px;
 }
 
 * {
@@ -24,6 +26,11 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
+}
+
+main {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  width: 100%;
 }
 
 img {
@@ -108,6 +115,12 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: var(--tertiary-color);
+    transition: background-color 0.1s ease;
+  }
 }
 
 .divider {
@@ -146,6 +159,11 @@ button {
   text-align: center;
   max-width: 150px;
   list-style: none;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.1 ease;
+  }
 }
 .category-card img {
   width: 50%;
@@ -177,8 +195,9 @@ button {
 }
 
 .products {
-  margin-top: 2rem;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-list {
@@ -200,6 +219,11 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 2px 2px 8px var(--light-grey);
+    transition: box-shadow 0.1s ease;
+  }
 }
 
 .product-card h2,
@@ -217,6 +241,18 @@ button {
 }
 
 /* End product list card */
+.products, .success-msg {
+  max-width: 800px;
+  margin: 1rem auto;
+}
+.success-msg {
+  text-align: center;
+  padding: 2rem;
+  background-color: #e0ffe0;
+  border: 2px solid #00cc00;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
 
 .product-detail {
   padding: 1em;
@@ -236,6 +272,7 @@ button {
   /* max-height: 120px; */
   align-items: center;
   position: relative;
+  width: 100%;
 }
 
 .cart-card__image {
@@ -343,7 +380,7 @@ input[type="number"] {
   border: none;
   cursor: pointer;
 }
-#checkout-btn:hover {
+#checkout-btn:hover, #place-order-btn:hover {
   background-color: var(--tertiary-color);
 }
 #checkout-btn a {
@@ -368,6 +405,7 @@ input[type="number"] {
   background-color: rgb(245, 245, 245);
   border-radius: 10px;
   box-shadow: 2px 2px 8px var(--light-grey);
+  margin-bottom: 1.5rem;
 }
 fieldset {
   border: none;
@@ -392,7 +430,31 @@ input[type="text"] {
   border-radius: 5px;
   color: #0b1b35;
 }
+#place-order-btn {
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
 
+/* alert message styles */
+.alert {
+  position: relative;
+  max-width: 600px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #ffdddd;
+  border-left: 6px solid #f44336;
+  color: #a94442;
+  border-radius: 5px;
+}
+.close-alert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  padding: 15px;
+}
 
 
 @media screen and (min-width: 500px) {
