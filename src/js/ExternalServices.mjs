@@ -42,7 +42,7 @@ function convertToJson(res) {
 
 
 
-export default class ProductData {
+export default class ExternalServices {
 /*=============================
 Product Data class
 Description:
@@ -93,6 +93,27 @@ Methods:
     const response = await fetch(`${baseURL}product/${id}`); // Fetch product data for the specified product ID from the server
     const data = await convertToJson(response); // Convert the response to JSON
     return data.Result; // Return the product object with the specified ID
+  }
+
+  async checkout(submission) {
+  /* Submit the order
+  =============================
+  Description:
+  This method submits the order data to the server.
+  Parameters:
+      - submission: The order data to be submitted.
+  Returns:
+      - A promise that resolves to the server's response.
+  USED IN: CheckoutProcess class to submit the order during checkout.
+  =============================*/
+    const options = {
+      method: "POST", // HTTP method for the request
+      headers: {
+        "Content-Type": "application/json", // Specify that the request body is in JSON format
+      },
+      body: JSON.stringify(submission), // Convert the submission object to a JSON string for the request body
+    };
+    return await fetch(`${baseURL}checkout/`, options).then(convertToJson); // Send a POST request to the server with the order data
   }
 }
 

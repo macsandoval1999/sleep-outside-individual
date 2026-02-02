@@ -54,6 +54,7 @@ USED IN: Used to update the cart display whenever there are changes to the cart 
   setLocalStorage("so-cart", cartItems); // Update local storage with the normalized cart items
   const htmlItems = cartItems.map((item) => cartItemTemplate(item)); // Generate HTML for each cart item using the cartItemTemplate function
   document.querySelector(".product-list").innerHTML = htmlItems.join(""); // Update the cart display area in the DOM with the generated HTML
+  checkoutButton(); // Update the state of the checkout button based on the cart total
 }
 
 
@@ -157,6 +158,29 @@ USED IN: Used to handle the removal of items from the cart when the user clicks 
   renderCartContents(); // Re-render the cart contents to reflect the removal
   getCartTotal(); // Update the total price display
   countCartItems(); // Update the cart item count badge in the header
+}
+
+
+
+function checkoutButton() {
+/* Function to enable or disable the checkout button based on cart total
+=====================================
+Description:
+This function checks the total price of items in the cart and enables or disables the checkout button accordingly.
+If the cart total is greater than zero, the checkout button is no longer hidden and is enabled; otherwise, it is disabled.
+Parameters:
+    - None  
+Returns:
+    - None
+USED IN: Used to manage the state of the checkout button based on cart contents.
+==================================== */
+  const checkoutBtn = document.getElementById("checkout-btn"); // Get the checkout button element
+  const total = getCartTotal(); // Get the current total price of items in the cart
+  if (total > 0) { // If the cart total is greater than zero...
+    checkoutBtn.classList.remove("hide"); // Show the checkout button
+  } else { // If the cart total is zero...
+    checkoutBtn.classList.add("hide"); // Hide the checkout button
+  }
 }
 
 
