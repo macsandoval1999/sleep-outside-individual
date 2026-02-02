@@ -1,41 +1,41 @@
 <!-- This is the product detail page. Here we will see the details of a specific product, including its make, name, image, price, color, and description. We can also add the product to the cart from this page. This index.html file takes a product ID as a query parameter and uses it to fetch the product details from a JSON file. Thats what makes this page reusable for all products. -->
 
-
-
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Product Make and Name</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/product.js" type="module"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Outside | Product Make and Name</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <script src="../js/product.js" type="module"></script>
-</head>
+  <body>
+    <header class="divider" id="main-header"></header>
 
-<body>
-  <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <section class="product-detail">
+        <h2>Brand Name</h2>
+        <h3 class="divider">Product</h3>
+        <img
+          src="../images/camping-products.jpg"
+          alt="Sleep Outside Camping Products"
+          id="productImage"
+          class="divider"
+        />
+        <p id="productPrice" class="product-card__price">$000.99</p>
+        <p id="productColor" class="product__color">Color</p>
+        <p id="productDesc" class="product__description">Description</p>
+        <div class="product-detail__add">
+          <label
+            >Qty:
+            <input id="productQuantity" type="number" min="1" value="1" />
+          </label>
+        </div>
+        <button id="addToCart" data-id="productId">Add to Cart</button>
+      </section>
+    </main>
 
-  <main class="divider">
-    <section class="product-detail">
-      <h2>Brand Name</h2>
-      <h3 class="divider">Product</h3>
-      <img src="../images/camping-products.jpg" alt="Sleep Outside Camping Products" id="productImage"
-        class="divider" />
-      <p id="productPrice" class="product-card__price">$000.99</p>
-      <p id="productColor" class="product__color">Color</p>
-      <p id="productDesc" class="product__description">Description</p>
-      <div class="product-detail__add">
-        <label>Qty:
-          <input id="productQuantity" type="number" min="1" value="1" />
-        </label>
-      </div>        
-      <button id="addToCart" data-id="productId">Add to Cart</button>
-
-    </section>
-  </main>
-
-  <footer id="main-footer"></footer>
-</body>
-
+    <footer id="main-footer"></footer>
+  </body>
 </html>

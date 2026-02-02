@@ -241,7 +241,8 @@ button {
 }
 
 /* End product list card */
-.products, .success-msg {
+.products,
+.success-msg {
   max-width: 800px;
   margin: 1rem auto;
 }
@@ -380,7 +381,8 @@ input[type="number"] {
   border: none;
   cursor: pointer;
 }
-#checkout-btn:hover, #place-order-btn:hover {
+#checkout-btn:hover,
+#place-order-btn:hover {
   background-color: var(--tertiary-color);
 }
 #checkout-btn a {
@@ -455,7 +457,6 @@ input[type="text"] {
   cursor: pointer;
   padding: 15px;
 }
-
 
 @media screen and (min-width: 500px) {
   body {
