@@ -6,7 +6,7 @@
 
 
 import { getParam, loadHeaderFooter } from "./utils.mjs"; // Import utility functions for URL parameters and loading header/footer
-import ProductData from "./ProductData.mjs"; // Import the ProductData class to fetch product details
+import ExternalServices from "./ExternalServices.mjs"; // Import the ProductData class to fetch product details
 import ProductDetails from "./ProductDetails.mjs"; // Import the ProductDetails class to manage and display product details
 
 
@@ -17,7 +17,7 @@ loadHeaderFooter(); // Load the header and footer of the page
 
 const productId = getParam("product"); // Get the product id from the URL
 
-const dataSource = new ProductData(); // Create an instance of ProductData to fetch product details
+const dataSource = new ExternalServices(); // Create an instance of ExternalServices to fetch product details
 
 const product = new ProductDetails(productId, dataSource); // Create an instance of ProductDetails with the productId and dataSource
 
