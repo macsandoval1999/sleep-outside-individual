@@ -135,6 +135,22 @@ button {
   position: relative;
   text-align: center;
 }
+@keyframes cart-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  75% {
+    transform: translateY(0);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: translateY(0);
+    transform: rotate(360deg);
+  }
+}
 
 .cart svg {
   width: 25px;
@@ -456,6 +472,13 @@ input[type="text"] {
   right: 0;
   cursor: pointer;
   padding: 15px;
+}
+
+/* order summary styles */
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @media screen and (min-width: 500px) {

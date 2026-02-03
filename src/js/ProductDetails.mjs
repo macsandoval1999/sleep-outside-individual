@@ -90,6 +90,10 @@ Methods:
         setLocalStorage("so-cart", cartItems); // Update local storage with the new cart items array
         alertMessage("Product added to cart!"); // Show an alert message indicating the product was added to the cart
         countCartItems(); // Update the cart item count badge in the header
+        document.querySelector(".cart").setAttribute("style", "animation: cart-animation 2s infinite"); // Add bounce animation to cart icon
+        setTimeout(() => {
+            document.querySelector(".cart").removeAttribute("style"); // Remove bounce animation after 1 second
+        }, 2000);
     }
 
     renderProductDetails() {
